@@ -8,7 +8,6 @@ import { Config, CognitoIdentityCredentials } from 'aws-sdk'
 
 export default class Cognito {
   configure () {
-    console.log('configure')
     this.userPool = new CognitoUserPool({
       UserPoolId: process.env.UserPoolId,
       ClientId: process.env.ClientId
@@ -33,7 +32,6 @@ export default class Cognito {
         }
       }
     })
-    console.log(options)
   }
 
   /**
@@ -84,7 +82,6 @@ export default class Cognito {
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
           console.log(result)
-          // 実際にはクレデンシャルなどをここで取得する(今回は省略)
           resolve(result)
         },
         onFailure: (err) => {
@@ -118,6 +115,17 @@ export default class Cognito {
             resolve(session)
           }
         }
+      })
+    })
+  }
+
+  getIdToken () {
+    console.log('getIdToken')
+    return new Promise((resolve, reject) => {
+      this.isAuthenticated().then(session => {
+        resolve(session)
+      }).catch(session => {
+        reject(session)
       })
     })
   }
