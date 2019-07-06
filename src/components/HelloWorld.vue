@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
+    <h2>Essential Links2</h2>
     <ul>
       <li>
         <a
@@ -90,6 +90,19 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+    load () {
+      // localStorage.getItem();
+      console.log(this.$cognito.getIdToken())
+      this.$cognito.getIdToken().then(idToken => {
+        this.msg = idToken
+      })
+    }
+  },
+  beforeMount () {
+    console.log('load')
+    this.load()
   }
 }
 </script>
