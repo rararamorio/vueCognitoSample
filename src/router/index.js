@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import cognito from '@/cognito'
+import HelloWorld from '@/components/HelloWorld'
+import UpdateUser from '@/components/UpdateUser'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Confirm from '@/components/Confirm'
@@ -20,7 +21,6 @@ const requireAuth = (to, from, next) => {
       })
     })
 }
-
 const logout = (to, from, next) => {
   cognito.logout()
   next('/login')
@@ -55,6 +55,13 @@ export default new Router({
     },
     { path: '/logout',
       beforeEnter: logout
+    },
+    {
+      path: '/update-user/:userId',
+      name: 'UpdateUser',
+      component: UpdateUser,
+      props: true,
+      beforeEnter: requireAuth
     }
   ]
 })
