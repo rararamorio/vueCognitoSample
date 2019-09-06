@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <p>{{ msg }}</p>
+    <p>{{test}}</p>
     <table border=1>
         <tr>
           <th>ID</th>
@@ -23,7 +24,8 @@ export default {
   data () {
     return {
       userList: [],
-      msg: null
+      msg: undefined,
+      test: this.$store.state.hoge
     }
   },
   methods: {

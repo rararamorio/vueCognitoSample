@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import cognito from './cognito'
+import 'es6-promise/auto'
+import 'fetch-polyfill'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -12,6 +15,7 @@ new Vue({
   el: '#app',
   router,
   cognito,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -74,13 +74,17 @@ export default class Cognito {
     const cognitoUser = new CognitoUser(userData)
     const authenticationData = { Username: username, Password: password }
     const authenticationDetails = new AuthenticationDetails(authenticationData)
+    console.log('login')
     return new Promise((resolve, reject) => {
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
+          console.log('result')
           console.log(result)
           resolve(result)
         },
         onFailure: (err) => {
+          console.log('err')
+          console.log(err)
           reject(err)
         }
       })
